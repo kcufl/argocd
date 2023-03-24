@@ -26,36 +26,6 @@ spec:
       autoPromotionEnabled: false
 
 ---
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
-metadata:
-  name: rollout-bluegreen
-spec:
-  replicas: 2
-  revisionHistoryLimit: 2
-  selector:
-    matchLabels:
-      app: rollout-bluegreen
-  template:
-    metadata:
-      labels:
-        app: rollout-bluegreen
-    spec:
-      containers:
-      - name: rollouts-demo
-        #여기서 blue를 green으로 수정
-        #image: argoproj/rollouts-demo:blue -> image: argoproj/rollouts-demo:green
-        image: argoproj/rollouts-demo:green
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
-  strategy:
-    blueGreen: 
-      activeService: rollout-bluegreen-active
-      previewService: rollout-bluegreen-preview
-      autoPromotionEnabled: false
-
----
 kind: Service
 apiVersion: v1
 metadata:
