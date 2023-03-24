@@ -27,6 +27,7 @@ spec:
       steps:
       - setWeight: 25    # 카나리로 배포된 서버로 전송해야될 트래픽 비율
       - pause: {}        # AutoPromotion Time (하단 설명 참조)
+
 ---
 kind: Service
 apiVersion: v1
@@ -39,5 +40,5 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 5000
-    nodePort: 30081
+    nodePort: 30071
   type: NodePort
